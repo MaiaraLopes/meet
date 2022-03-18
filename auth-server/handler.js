@@ -28,7 +28,8 @@ const credentials = {
   redirect_uris: ["https://maiaralopes.github.io/meet/"],
   javascript_origins: [
     "https://maiaralopes.github.io",
-    "https://localhost:3000",
+    "http://localhost:3000",
+    "http://localhost:4000",
   ],
 };
 const { client_secret, client_id, redirect_uris, calendar_id } = credentials;
@@ -52,6 +53,44 @@ module.exports.getAuthURL = async () => {
    * on your Google Console. Also, any passed scopes are the ones
    * users will see when the consent screen is displayed to them.
    */
+
+  module.exports.getAccessToken = async (event) => {
+    const oAuth2Client = new google.auth.OAuth2(
+      client_id,
+      client_secret,
+      redirect_uris[0]
+    );
+
+    const code = decodeURIComponent(`${event.pathParamenters.code}`);
+
+    return new Promise((resolve, reject) => {
+      /**
+       * Exchange authorization code for access token with a 'callback' after the exchange,
+       * The callback in this case is an arrow function with the results as paramenters: 'err' and 'token.'
+       */
+
+      oAuth2Client.getToken(code, (err, token) => {
+        if (err) {
+          return reject(err);
+        }
+        return resolve(token);
+      });
+    })
+      .then((token) => {
+        //Respond with OAtuth token
+        return {
+          statusCode: 200,
+          body: JSON.stringify(token),
+        };
+      })
+      .catch((err) => {
+        console.log(err);
+        return {
+          statusCode: 500,
+          body: JSON.stringify(err),
+        };
+      });
+  };
 
   const authUrl = oAuth2Client.generateAuthUrl({
     access_type: "offline",

@@ -33,11 +33,6 @@ const credentials = {
   ],
 };
 const { client_secret, client_id, redirect_uris, calendar_id } = credentials;
-const oAuth2Client = new google.auth.OAuth2(
-  client_id,
-  client_secret,
-  redirect_uris[0]
-);
 
 /**
  * The first step in the OAuth process is to generate a URL so users can log in
@@ -53,7 +48,11 @@ module.exports.getAuthURL = async () => {
    * on your Google Console. Also, any passed scopes are the ones
    * users will see when the consent screen is displayed to them.
    */
-
+  const oAuth2Client = new google.auth.OAuth2(
+    client_id,
+    client_secret,
+    redirect_uris[0]
+  );
   const authUrl = oAuth2Client.generateAuthUrl({
     access_type: "offline",
     scope: SCOPES,
@@ -109,6 +108,11 @@ module.exports.getAccessToken = async (event) => {
 };
 
 module.exports.getCalendarEvents = (event) => {
+  const oAuth2Client = new google.auth.OAuth2(
+    client_id,
+    client_secret,
+    redirect_uris[0]
+  );
   const access_token = decodeURIComponent(
     `${event.pathParameters.access_token}`
   );

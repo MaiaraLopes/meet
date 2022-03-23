@@ -4,13 +4,24 @@ import EventList from "./EventList";
 import CitySearch from "./CitySearch";
 import Event from "./Event";
 import NumberOfEvents from "./NumberOfEvents";
-import { getEvents } from "./api";
+import { extractLocations, getEvents } from "./api";
 
 class App extends Component {
   state = {
     events: [],
     locations: [],
   };
+
+  componentDidMount() {
+    this.mounted = true;
+    getEvents().then((events) => {
+      this.setState({ events, locations: extractLocations(events) });
+    });
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
+  }
 
   updateEvents = (location) => {
     getEvents().then((events) => {

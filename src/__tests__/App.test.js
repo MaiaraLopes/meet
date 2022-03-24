@@ -29,17 +29,19 @@ describe("<App /> component", () => {
 //Integration tests
 
 describe("<App /> integration", () => {
-  test('App passes "events" state as prop to EventList', () => {
-    const AppWrapper = mount(<App />);
+  test('App passes "events" state as prop to EventList', async () => {
+    const AppWrapper = await mount(<App />);
     const AppEventsState = AppWrapper.state("events");
+    AppWrapper.update();
     expect(AppEventsState).not.toEqual(undefined);
     expect(AppWrapper.find(EventList).props().events).toEqual(AppEventsState);
     AppWrapper.unmount();
   });
 
-  test('App passes "locations" state as a prop to CitySearch', () => {
-    const AppWrapper = mount(<App />);
+  test('App passes "locations" state as a prop to CitySearch', async () => {
+    const AppWrapper = await mount(<App />);
     const AppLocationState = AppWrapper.state("locations");
+    AppWrapper.update();
     expect(AppLocationState).not.toEqual(undefined);
     expect(AppWrapper.find(CitySearch).props().locations).toEqual(
       AppLocationState
@@ -51,7 +53,7 @@ describe("<App /> integration", () => {
     const AppWrapper = mount(<App />);
     const CitySearchWrapper = AppWrapper.find(CitySearch);
     const locations = extractLocations(mockData);
-    CitySearchWrapper.setState({ suggetions: locations });
+    CitySearchWrapper.setState({ suggestions: locations });
     const suggestions = CitySearchWrapper.state("suggestions");
     const selectedIndex = Math.floor(Math.random() * suggestions.length);
     const selectedCity = suggestions[selectedIndex];

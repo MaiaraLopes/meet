@@ -1,4 +1,3 @@
-import { mockData } from "./mock-data";
 import axios from "axios";
 import NProgress from "nprogress";
 
@@ -46,29 +45,9 @@ export const getEvents = async () => {
   }
 };
 
-export const getAccessToken = async () => {
-  const accessToken = localStorage.getItem("access_token");
-  const tokenCheck = accessToken && (await checkToken(accessToken));
-
-  if (!accessToken || tokenCheck.error) {
-    await localStorage.removeItem("access_token");
-    const searchParams = new URLSearchParams(window.location.search);
-    const code = await searchParams.get("code");
-    if (!code) {
-      const results = await axios.get(
-        "http://localhost:4000/dev/api/get-auth-url"
-      );
-      const { authUrl } = results.data;
-      return (window.location.href = authUrl);
-    }
-    return code && getAccessToken(code);
-  }
-  return accessToken;
-};
-
 const removeQuery = () => {
   if (window.history.pushState && window.location.pathname) {
-    let newurl =
+    var newurl =
       window.location.protocol +
       "//" +
       window.location.host +
@@ -93,4 +72,24 @@ const getToken = async (code) => {
   access_token && localStorage.setItem("access_token", access_token);
 
   return access_token;
+};
+
+export const getAccessToken = async () => {
+  const accessToken = localStorage.getItem("access_token");
+  const tokenCheck = accessToken && (await checkToken(accessToken));
+
+  if (!accessToken || tokenCheck.error) {
+    await localStorage.removeItem("access_token");
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = await searchParams.get("code");
+    if (!code) {
+      const results = await axios.get(
+        "http://localhost:4000/dev/api/get-auth-url"
+      );
+      const { authUrl } = results.data;
+      return (window.location.href = authUrl);
+    }
+    return code && getToken(code);
+  }
+  return accessToken;
 };

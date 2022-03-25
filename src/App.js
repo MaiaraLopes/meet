@@ -31,18 +31,18 @@ class App extends Component {
       {
         numberOfEvents,
       },
-      this.updateEvents(this.state.location, numberOfEvents)
+      this.updateEvents(this.state.locations, numberOfEvents)
     );
   };
-  updateEvents = (location, eventCount) => {
+  updateEvents = (location, eventCount = this.state.numberOfEvents) => {
     this.mounted = true;
     getEvents().then((events) => {
       const locationEvents =
-        location === "all" && eventCount === 0
-          ? events
-          : location !== "all" && eventCount === 0
-          ? events.filter((event) => event.location === location)
-          : events.slice(0, eventCount);
+        location === "all"
+          ? events.slice(0, eventCount)
+          : events
+              .filter((event) => event.location === location)
+              .slice(0, eventCount);
       if (this.mounted) {
         this.setState({
           events: locationEvents,

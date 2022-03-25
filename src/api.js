@@ -1,5 +1,6 @@
 import axios from "axios";
 import NProgress from "nprogress";
+import { mockData } from "./mock-data";
 
 /**
  * This function takes an events array, then uses map to create a new array with only locations.
@@ -24,10 +25,10 @@ const checkToken = async (accessToken) => {
 
 export const getEvents = async () => {
   NProgress.start();
-  /*if (window.location.href.startsWith("http://localhost")) {
-  NProgress.done()
+  if (window.location.href.startsWith("http://localhost")) {
+    NProgress.done();
     return mockData;
-  }*/
+  }
 
   const token = await getAccessToken();
 

@@ -11,6 +11,7 @@ class App extends Component {
     events: [],
     locations: [],
     numberOfEvents: 32,
+    selectedLocation: "all",
   };
 
   componentDidMount() {
@@ -28,12 +29,11 @@ class App extends Component {
 
   updateNumberofEvents = (numberOfEvents) => {
     this.setState(
-      {
-        numberOfEvents,
-      },
-      this.updateEvents(this.state.locations, numberOfEvents)
+      { numberOfEvents },
+      this.updateEvents(this.state.selectedLocation, numberOfEvents)
     );
   };
+
   updateEvents = (location, eventCount = this.state.numberOfEvents) => {
     this.mounted = true;
     getEvents().then((events) => {
@@ -47,6 +47,7 @@ class App extends Component {
         this.setState({
           events: locationEvents,
           numberOfEvents: eventCount,
+          selectedLocation: location,
         });
       }
     });

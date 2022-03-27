@@ -82,4 +82,26 @@ describe("<App /> integration", () => {
     expect(AppWrapper.find(EventList).props().numberOfEvents).toEqual(32);
     AppWrapper.unmount();
   });
+
+  test("update the state of number of events when input changes", async () => {
+    let AppWrapper = mount(<App />);
+    const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents).find(
+      ".numberOfEvents__input"
+    );
+    const newNumberofEvents = { target: { value: 1 } };
+    NumberOfEventsWrapper.at(0).simulate("change", newNumberofEvents);
+    expect(AppWrapper.state("numberOfEvents")).toBe(1);
+    AppWrapper.unmount();
+  });
+
+  test("update the number of events when the input changes", async () => {
+    const AppWrapper = mount(<App />);
+    const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents).find(
+      ".numberOfEvents__input"
+    );
+    const newNumberofEvents = { target: { value: 2 } };
+    await NumberOfEventsWrapper.at(0).simulate("change", newNumberofEvents);
+    expect(AppWrapper.state("events")).toHaveLength(2);
+    AppWrapper.unmount();
+  });
 });

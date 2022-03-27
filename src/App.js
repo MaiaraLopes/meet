@@ -27,7 +27,7 @@ class App extends Component {
     this.mounted = false;
   }
 
-  updateNumberofEvents = (numberOfEvents) => {
+  updateNumberOfEvents = (numberOfEvents) => {
     this.setState(
       { numberOfEvents },
       this.updateEvents(this.state.selectedLocation, numberOfEvents)
@@ -61,8 +61,8 @@ class App extends Component {
           updateEvents={this.updateEvents}
         />
         <NumberOfEvents
-          updateNumberofEvents={(number) => {
-            this.updateNumberofEvents(number);
+          updateNumberOfEvents={(number) => {
+            this.updateNumberOfEvents(number);
           }}
         />
         <EventList

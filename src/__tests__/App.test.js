@@ -85,23 +85,21 @@ describe("<App /> integration", () => {
 
   test("update the state of number of events when input changes", async () => {
     let AppWrapper = mount(<App />);
-    const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents).find(
-      ".numberOfEvents__input"
-    );
-    const newNumberofEvents = { target: { value: 1 } };
-    NumberOfEventsWrapper.at(0).simulate("change", newNumberofEvents);
+    const NumberOfEventsInput =
+      AppWrapper.find(NumberOfEvents).find(".numberOfEvents");
+    const newNumberOfEvents = { target: { value: 1 } };
+    NumberOfEventsInput.at(0).simulate("change", newNumberOfEvents);
     expect(AppWrapper.state("numberOfEvents")).toBe(1);
     AppWrapper.unmount();
   });
 
   test("update the number of events when the input changes", async () => {
     const AppWrapper = mount(<App />);
-    const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents).find(
-      ".numberOfEvents__input"
-    );
-    const newNumberofEvents = { target: { value: 2 } };
-    await NumberOfEventsWrapper.at(0).simulate("change", newNumberofEvents);
-    expect(AppWrapper.state("events")).toHaveLength(2);
+    const NumberOfEventsInput =
+      AppWrapper.find(NumberOfEvents).find(".numberOfEvents");
+    const newNumberOfEvents = { target: { value: 1 } };
+    await NumberOfEventsInput.at(0).simulate("change", newNumberOfEvents);
+    expect(AppWrapper.state("events")).toHaveLength(1);
     AppWrapper.unmount();
   });
 });

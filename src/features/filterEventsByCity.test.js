@@ -7,6 +7,7 @@ import CitySearch from "../CitySearch";
 import { extractLocations } from "../api";
 
 const feature = loadFeature("./src/features/filterEventsByCity.feature");
+const locations = extractLocations(mockData);
 
 defineFeature(feature, (test) => {
   test("When user hasn't searched for a city, show upcoming events from all cities.", ({
@@ -76,13 +77,13 @@ defineFeature(feature, (test) => {
       "their city should be changed to that city (i.e., 'Berlin, Germany'",
       () => {
         const CitySearchWrapper = AppWrapper.find(CitySearch);
-        expect(CitySearchWrapper.state("query")).toBe("Berline, Germany");
+        expect(CitySearchWrapper.state("query")).toBe("Berlin, Germany");
       }
     );
     and(
       "the user should receive a list of upcoming events in that city",
       () => {
-        expect(AppWrapper.find("event")).toHaveLength(mockData.length);
+        expect(AppWrapper.find(".event")).toHaveLength(mockData.length);
       }
     );
   });

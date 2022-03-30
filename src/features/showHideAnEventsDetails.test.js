@@ -21,7 +21,7 @@ defineFeature(feature, (test) => {
     when("an event is displayed", () => {});
 
     then("the event details will be collapsed", () => {
-      expect(AppWrapper.find(".more-details")).toHaveLength(0);
+      expect(AppWrapper.find(".description")).toHaveLength(0);
     });
   });
 
@@ -43,7 +43,7 @@ defineFeature(feature, (test) => {
     );
 
     then("the event details will be expanded", () => {
-      expect(AppWrapper.find(".more-details")).toHaveLength(1);
+      expect(AppWrapper.find(".description")).toHaveLength(1);
     });
   });
 
@@ -56,7 +56,7 @@ defineFeature(feature, (test) => {
       AppWrapper = await mount(<App />);
       AppWrapper.update();
       AppWrapper.find(".show-details").at(0).simulate("click");
-      expect(AppWrapper.find(".more-details")).toHaveLength(1);
+      expect(AppWrapper.find(".description")).toHaveLength(1);
     });
 
     when("the user clicks on 'fewer details' button", () => {
@@ -64,7 +64,7 @@ defineFeature(feature, (test) => {
     });
 
     then("the event details will be collapsed", () => {
-      expect(AppWrapper.find(".more-details")).toHaveLength(0);
+      expect(AppWrapper.find(".description")).toHaveLength(0);
     });
   });
 });

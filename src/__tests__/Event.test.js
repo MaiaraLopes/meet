@@ -26,11 +26,11 @@ describe("<Event /> component", () => {
     });
     EventWrapper.find(".show-details").simulate("click");
     expect(EventWrapper.state("collapsed")).toBe(false);
-    expect(EventWrapper.find(".description.hidden")).toHaveLength(0);
+    expect(EventWrapper.find(".description")).toHaveLength(1);
   });
 
   test("event component has details/description", () => {
-    expect(EventWrapper.find(".description")).toHaveLength(1);
+    expect(EventWrapper.find(".more-details")).toHaveLength(1);
   });
 
   test("show event location", () => {
@@ -51,6 +51,6 @@ describe("<Event /> component", () => {
     });
     EventWrapper.find(".hide-details").simulate("click");
     expect(EventWrapper.state("collapsed")).toBe(true);
-    expect(EventWrapper.find(".description.hidden")).toHaveLength(1);
+    expect(EventWrapper.find(".description")).toHaveLength(0);
   });
 });

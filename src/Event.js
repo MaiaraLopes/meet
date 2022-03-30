@@ -19,9 +19,9 @@ class Event extends Component {
       <div className="event">
         <h3 className="summary">{event.summary}</h3>
         <div className="more-details">
-          <p className={`description ${collapsed ? "hidden" : ""}`}>
-            {event.description}
-          </p>
+          {collapsed ? null : (
+            <p className="description">{event.description}</p>
+          )}
         </div>
         <p className="time">
           {event.start.dateTime} Timezone: {event.start.timeZone}

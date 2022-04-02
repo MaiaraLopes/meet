@@ -25,7 +25,10 @@ const credentials = {
   auth_uri: "https://accounts.google.com/o/oauth2/auth",
   token_uri: "https://oauth2.googleapis.com/token",
   auth_provider_x509_cert_url: "https://googleapis.com/oauth2/v1/certs",
-  redirect_uris: ["https://maiaralopes.github.io/meet/"],
+  redirect_uris: [
+    "https://maiaralopes.github.io/meet/",
+    "http://localhost:3000",
+  ],
   javascript_origins: [
     "https://maiaralopes.github.io",
     "http://localhost:3000",
@@ -62,6 +65,9 @@ module.exports.getAuthURL = async () => {
     statusCode: 200,
     headers: {
       "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": true,
+      "Access-Control-Allow-Headers": "Content-Type",
+      "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
     },
     body: JSON.stringify({
       authUrl: authUrl,

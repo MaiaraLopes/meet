@@ -75,6 +75,9 @@ functions:
       - http:
           path: api/get-auth-url
           method: get
+          cors:
+            origin: "*"
+            allowCredentials: true
 
   getAccessToken:
     handler: handler.getAccessToken
@@ -82,6 +85,9 @@ functions:
       - http:
           path: api/token/{code}
           method: get
+          cors:
+            origin: "*"
+            allowCredentials: true
 
   getCalendarEvents:
     handler: handler.getCalendarEvents
@@ -89,6 +95,9 @@ functions:
       - http:
           path: api/get-events/{access_token}
           method: get
+          cors:
+            origin: "*"
+            allowCredentials: true
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details

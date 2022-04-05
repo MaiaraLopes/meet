@@ -77,7 +77,9 @@ class App extends Component {
         <div>
           {!navigator.onLine && (
             <OfflineAlert
-              text={"A new list will be loaded when you are back online."}
+              text={
+                "You are offline. An updated list will be loaded when you are back online."
+              }
             />
           )}
         </div>

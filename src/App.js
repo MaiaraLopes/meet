@@ -15,10 +15,17 @@ class App extends Component {
     numberOfEvents: 32,
     selectedLocation: "all",
     showWelcomeScreen: undefined,
+    isOnline: true,
   };
 
   async componentDidMount() {
     this.mounted = true;
+    window.addEventListener("offline", (e) => {
+      this.setState({ isOnline: false });
+    });
+    window.addEventListener("online", (e) => {
+      this.setState({ isOnline: true });
+    });
     const accessToken = localStorage.getItem("access_token");
     const isTokenValid =
       !window.location.href.startsWith("http://localhost") &&
@@ -75,7 +82,7 @@ class App extends Component {
     return (
       <div className="App">
         <div>
-          {!navigator.onLine && (
+          {this.state.isOnline && (
             <OfflineAlert
               text={
                 "You are offline. An updated list will be loaded when you are back online."

@@ -82,7 +82,7 @@ class App extends Component {
     return (
       <div className="App">
         <div>
-          {this.state.isOnline && (
+          {!this.state.isOnline && (
             <OfflineAlert
               text={
                 "You are offline. An updated list will be loaded when you are back online."

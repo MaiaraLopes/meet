@@ -4,6 +4,9 @@
   height: 100%;
   top: 0;
   background: white;
+  margin-top: 50px;
+  border: #1669f2;
+  border-radius: 10px;
 }
 .login-button {
   color: #494949;

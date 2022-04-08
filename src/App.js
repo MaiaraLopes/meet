@@ -14,6 +14,7 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
+  ResponsiveContainer,
 } from "recharts";
 
 class App extends Component {
@@ -119,24 +120,20 @@ class App extends Component {
             this.updateNumberOfEvents(number);
           }}
         />
-
-        <ScatterChart
-          width={730}
-          height={250}
-          margin={{ top: 20, right: 20, bottom: 10, left: 10 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="city" type="category" name="city" />
-          <YAxis
-            dataKey="number"
-            type="number"
-            name="number of events"
-            allowDecimals={false}
-          />
-          <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-          <Scatter data={this.getData()} fill="#8884d8" />
-        </ScatterChart>
-
+        <ResponsiveContainer height={400}>
+          <ScatterChart margin={{ top: 20, right: 20, bottom: 10, left: 10 }}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="city" type="category" name="city" />
+            <YAxis
+              dataKey="number"
+              type="number"
+              name="number of events"
+              allowDecimals={false}
+            />
+            <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+            <Scatter data={this.getData()} fill="#8884d8" />
+          </ScatterChart>
+        </ResponsiveContainer>
         <EventList
           events={this.state.events}
           numberOfEvents={this.state.numberOfEvents}

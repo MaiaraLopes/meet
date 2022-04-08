@@ -38,7 +38,14 @@ o.svg"
       </a>
 
       <p>
-        Open source <a href="https://github.com/MaiaraLopes/meet">code</a>
+        Open source
+        <a
+          href="https://github.com/MaiaraLopes/meet"
+          target="_blank"
+          rel="noreferrer"
+        >
+          code
+        </a>
       </p>
     </div>
   ) : null;

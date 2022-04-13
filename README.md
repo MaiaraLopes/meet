@@ -8,6 +8,11 @@ React
 Serverless Function
 
 PWA technology
+
+**Disclaimer**
+
+*This project needs to be run locally using serverless offline. In the future, this will be changed to AWS functions when the app will be available to be used anywhere, online and offline.*
+
 ## Stories and Scenarios
 As a user I should be able to filter events by city so that I can see the list of events that take place in that city
 

@@ -2,7 +2,7 @@
 # Meet
 In this project, users will be able to see events happening in cities around the world and will be able to choose specific cities of their choice.
 
-
+ADD THE USER NEEDS TO RUN SERVERLESS
 ## Built with
 React
 ## Stories and Scenarios

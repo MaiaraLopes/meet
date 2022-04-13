@@ -2,9 +2,12 @@
 # Meet
 In this project, users will be able to see events happening in cities around the world and will be able to choose specific cities of their choice.
 
-ADD THE USER NEEDS TO RUN SERVERLESS
 ## Built with
 React
+
+Serverless Function
+
+PWA technology
 ## Stories and Scenarios
 As a user I should be able to filter events by city so that I can see the list of events that take place in that city
 

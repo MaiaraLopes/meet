@@ -5,6 +5,10 @@ In this project, users will be able to see events happening in cities around the
 ## Built with
 React
 
+Create-React-App
+
+OAuth2
+
 Serverless Function
 
 PWA technology

@@ -103,12 +103,14 @@ class App extends Component {
     if (showWelcomeScreen === undefined) {
       return <div className="App" />;
     } else if (showWelcomeScreen === true) {
-      <WelcomeScreen
-        showWelcomeScreen={this.state.showWelcomeScreen}
-        getAccessToken={() => {
-          getAccessToken();
-        }}
-      />;
+      return (
+        <WelcomeScreen
+          showWelcomeScreen={this.state.showWelcomeScreen}
+          getAccessToken={() => {
+            getAccessToken();
+          }}
+        />
+      );
     } else {
       return (
         <div className="App">
@@ -157,14 +159,6 @@ class App extends Component {
         </div>
       );
     }
-    return (
-      <WelcomeScreen
-        showWelcomeScreen={this.state.showWelcomeScreen}
-        getAccessToken={() => {
-          getAccessToken();
-        }}
-      />
-    );
   }
 }
 

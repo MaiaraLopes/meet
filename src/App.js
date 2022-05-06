@@ -157,6 +157,14 @@ class App extends Component {
         </div>
       );
     }
+    return (
+      <WelcomeScreen
+        showWelcomeScreen={this.state.showWelcomeScreen}
+        getAccessToken={() => {
+          getAccessToken();
+        }}
+      />
+    );
   }
 }
 

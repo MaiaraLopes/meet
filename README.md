@@ -116,3 +116,9 @@ o When there is no specific city selected
 
 o Show a chart with the number of upcoming events in each city
 
+## Screenshots and video
+
+You can watch the app working [here](https://vimeo.com/707099607).
+
+[![2-Welcome.png](https://i.postimg.cc/7Znwg213/2-Welcome.png)](https://postimg.cc/nXryxMPr)
+[![1-Main.png](https://i.postimg.cc/C1XgFHYg/1-Main.png)](https://postimg.cc/wyXP2N7f)
